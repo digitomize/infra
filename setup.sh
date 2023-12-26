@@ -1,10 +1,9 @@
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 
 # Add Docker's official GPG key:
-sudo apt-get -y update
-sudo apt-get install -y ca-certificates curl gnupg
-sudo install -y -m 0755 -d /etc/apt/keyrings
+sudo apt-get install ca-certificates curl gnupg -y
+sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
@@ -13,18 +12,18 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get -y update
+sudo apt-get  update
 
 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install  docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-sudo docker swarm init
+sudo docker swarm init --advertise-addr $1
 
 sudo usermod -aG docker $USER
 
 curl -s https://install.meltred.tech/meltcd | bash
 
-sudo apt install -y nginx 
+sudo apt install  nginx -y
 
 sudo touch /etc/nginx/sites-enabled/meltcd.digitomize.com
 sudo touch /etc/nginx/sites-enabled/api.digitomize.com
