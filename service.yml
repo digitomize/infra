@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   backend:
-    image: pranshugupta54/backend:4b3f7b1
+    image: pranshugupta54/backend:913682d
     ports:
       - "4001:4001"
     deploy:
